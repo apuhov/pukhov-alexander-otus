@@ -1,2 +1,2 @@
 # pukhov-alexander-otus
-Repo for otus js homeworks
+Repo for otus js homeworks.
