@@ -38,37 +38,7 @@ reduce
 ```
 */
 
-'use strict';
-
 async function promiseReduce(asyncFunctions = [], reduce, initialValue = 0) {
-  let result = initialValue;
-  for (let i = 0; i < asyncFunctions.length; i++)
-    try {
-      result = reduce(result, await asyncFunctions[i]());
-    } catch (e) {
-      console.warn(`${asyncFunctions[i].name} failed with ${e}`);
-    }
-  return Promise.resolve(result);
-}
-
-function promiseReduce2(asyncFunctions = [], reduce, initialValue = 0) {
-  let promise = Promise.resolve(initialValue);
-  asyncFunctions.forEach(
-    fun => promise = promise.then(
-      async sum => {
-        try {
-          return reduce(sum, await fun());
-        } catch (e) {
-          console.warn(`${fun.name} failed with ${e}`);
-          return sum;
-        }
-      }
-    )
-  );
-  return promise;
-}
-
-async function promiseReduce3(asyncFunctions = [], reduce, initialValue = 0) {
   return asyncFunctions.reduce(
     (promise, fun) => promise.then(
       async sum => {
@@ -84,7 +54,7 @@ async function promiseReduce3(asyncFunctions = [], reduce, initialValue = 0) {
   );
 }
 
-// Test ---------------------
+//tst
 
 const fn1 = () => {
   console.log('fn1');
@@ -106,7 +76,7 @@ const fn4 = () => new Promise(resolve => {
   setTimeout(() => resolve(5), 1000);
 });
 
-promiseReduce3(
+promiseReduce(
   [fn1, fn2, fn3, fn4],
   function(memo, value) {
     console.log('reduce');
