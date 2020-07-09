@@ -6,8 +6,8 @@
 sum(1)(2)(3)....(n)() === 1 + 2 + 3 + ... + n
 */
 
+//v1
 function summ(a) {
-    //if (typeof a === "undefined")   return 0;
     let curSumm = a;
     function f(b) {
         curSumm += b;
@@ -18,25 +18,26 @@ function summ(a) {
     };
     return f;
 }
-
 //test
-console.log( summ(1)(2)(3) );
-console.log( summ(5)(-1)(8) );
+console.log( "rez summ: " + summ(1)(2)(3) );
+console.log( "rez summ: " + summ(5)(-1)(8) );
+console.log( "rez summ: " + summ() );
+console.log( "rez summ: " + summ(1)(2)() );
 
-
-// const summ = (a) => {
-//     const func = (b) => {
-//         if (typeof b === "undefined"){
-//             return  a;
-//         }
-//         return summ (a + b);
-//     };
-//     func.valueOf = function () {
-//       return a;
-//     };
-//     return func;
-// };
-
-// //test
-// console.log( summ(1)(2)(3) );
-// console.log( summ(5)(-1)(8) );
+//v2
+function summ2(a) {
+    let curSumm = typeof a === "undefined" ? 0 : a;
+    function f(b) {
+        curSumm += typeof b === "undefined" ? 0 : b;
+        return f;
+    }
+    f.toString = function() {
+        return curSumm;
+    };
+    return f;
+}
+//test
+console.log( "rez summ2: " + summ2(1)(2)(3) );
+console.log( "rez summ2: " + summ2(5)(-1)(8) );
+console.log( "rez summ2: " + summ2() );
+console.log( "rez summ2: " + summ2(1)(2)() );
