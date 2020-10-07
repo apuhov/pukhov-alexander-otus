@@ -15,3 +15,6 @@
 ---
 
 **Результатом** работы будет ссылка на онлайн демо или репозиторий
+
+## Sandbox
+https://codesandbox.io/s/apuhovpukhov-alexander-otus-eshop-p0uhg
