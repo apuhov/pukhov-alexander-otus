@@ -1,0 +1,8 @@
+{
+  "name": "node-lesson-14",
+  "version": "1.0.0",
+  "description": "Sorting a large file of numbers with limited RAM",
+  "scripts": {
+    "start": "node --max-old-space-size=50 sortFile.js"
+  }
+}
